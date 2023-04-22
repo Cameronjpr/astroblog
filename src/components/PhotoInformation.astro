@@ -1,0 +1,10 @@
+---
+export interface Props {
+	camera: string
+  film: string
+}
+
+const { camera, film } = Astro.props;
+---
+
+<span>{camera} / {film}</span>
