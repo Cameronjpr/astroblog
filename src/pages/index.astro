@@ -9,6 +9,7 @@ import FormattedDate from '../components/FormattedDate.astro'
 const posts = (await getCollection('blog'))
   .filter((b) => !b.data.draft)
   .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+  .reverse()
 ---
 
 <!DOCTYPE html>
@@ -19,9 +20,15 @@ const posts = (await getCollection('blog'))
       ul {
         list-style-type: none;
         padding: unset;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
       }
+
       ul li {
         display: flex;
+        flex-direction: column;
+        width: 100%;
         justify-content: space-between;
       }
       ul li :global(time) {
@@ -36,8 +43,8 @@ const posts = (await getCollection('blog'))
         {
           posts.map((post) => (
             <li>
-              <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
               <FormattedDate date={post.data.pubDate} />
+              <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
             </li>
           ))
         }
