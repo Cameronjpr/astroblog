@@ -1,31 +1,35 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
+import HeaderLink from './HeaderLink.astro'
 
-const today = new Date();
+const today = new Date()
 ---
 
 <footer>
-	<ul>
-		<HeaderLink href="https://twitter.com/cameronjpr" target="_blank">Twitter</HeaderLink>
-		<HeaderLink href="https://instagram.com/cameronjpr" target="_blank">Instagram</HeaderLink>
-		<HeaderLink href="https://github.com/cameronjpr" target="_blank">GitHub</HeaderLink>
-	</ul>
-	&copy; {today.getFullYear()} Cameron Robson. All rights reserved.
+  <ul>
+    <HeaderLink href="https://twitter.com/cameronjpr" target="_blank">
+      Twitter
+    </HeaderLink>
+    <HeaderLink href="https://instagram.com/cameronjpr" target="_blank">
+      Instagram
+    </HeaderLink>
+    <HeaderLink href="https://github.com/cameronjpr" target="_blank">
+      GitHub
+    </HeaderLink>
+  </ul>
+  &copy; {today.getFullYear()} Cameron Robson. All rights reserved.
 </footer>
 <style>
-	footer {
-		position: absolute;
-		bottom: 0;
-		padding-block: 25px;
-		text-align: center;
-		margin: 0 auto;
-	}
+  footer {
+    padding-block: 25px;
+    text-align: left;
+    margin: 0 auto;
+  }
 
-	ul {
-		display: flex;
-		justify-content: start;
-		list-style: none;
-		padding: 0;
-		gap: 10px;
-	}
+  ul {
+    display: flex;
+    justify-content: start;
+    list-style: none;
+    padding: 0;
+    gap: 10px;
+  }
 </style>

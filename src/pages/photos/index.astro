@@ -1,61 +1,75 @@
 ---
-import BaseHead from '@components/BaseHead.astro';
-import Header from '@components/Header.astro';
-import Footer from '@components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
+import BaseHead from '@components/BaseHead.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'
+import { getCollection } from 'astro:content'
+import { groupByYear } from 'src/utils'
 
-const photos = (await getCollection('photos')).sort((a, b) => {
-  return b.data.shot - a.data.shot;
-});
+const photos = (await getCollection('photos'))
+  .sort((a, b) => {
+    return b.data.shot.valueOf() - a.data.shot.valueOf()
+  })
+  .reverse()
 
-
+const groupedPhotos = groupByYear(photos)
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			ul {
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      ul {
         list-style-type: none;
-				padding: unset;
+        padding: unset;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 1rem;
-			}
-			ul li {
-				justify-content: space-between;
+      }
+      ul li {
+        justify-content: space-between;
       }
 
       ul li a:hover {
-        filter: brightness(0.8)
+        filter: brightness(0.8);
       }
-      
+
       ul li a img {
         border-radius: 5px;
         object-fit: cover;
         height: 150px;
       }
-			
-		</style>
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
-				<ul>
-					{
-						photos.map((photo) => (
-							<li>
-								<a href={`/photos/${photo.slug}/`}>
-                  <img src={photo.data.src} alt={photo.data.title} width="150" loading="lazy" /> 
+    </style>
+  </head>
+  <body>
+    <Header title={SITE_TITLE} />
+    <main>
+      <ul>
+        {
+          photos.map((photo, idx) => {
+            const previousPhoto = idx ? photos[idx - 1] : undefined
+            const isFirstOfYear =
+              photo.data.shot.getFullYear() !==
+              previousPhoto?.data.shot.getFullYear()
+
+            return (
+              <li>
+                <a href={`/photos/${photo.slug}/`}>
+                  <img
+                    src={photo.data.src}
+                    alt={photo.data.title}
+                    width="150"
+                    loading="lazy"
+                  />
                 </a>
-							</li>
-						))
-					}
-				</ul>
-		</main>
-		<Footer />
-	</body>
+              </li>
+            )
+          })
+        }
+      </ul>
+    </main>
+    <Footer />
+  </body>
 </html>

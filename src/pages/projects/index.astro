@@ -1,36 +1,55 @@
 ---
-import BaseHead from '@components/BaseHead.astro';
-import Header from '@components/Header.astro';
-import Footer from '@components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
+import BaseHead from '@components/BaseHead.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'
+import { getCollection } from 'astro:content'
 
+const projects = (await getCollection('projects')).sort((a, b) => {
+  return b.data.created.valueOf() - a.data.created.valueOf()
+})
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			ul {
-				list-style-type: none;
-				padding: unset;
-			}
-			ul li {
-				display: flex;
-				justify-content: space-between;
-			}
-			ul li :global(time) {
-				color: #595959;
-			}
-			
-		</style>
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
-				<p>Projects</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      ul {
+        list-style-type: none;
+        padding: unset;
+      }
+      ul li {
+        display: flex;
+        flex-direction: column;
+      }
+      ul li :global(time) {
+        color: #595959;
+      }
+
+      ul li h2 {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <Header title={SITE_TITLE} />
+    <main>
+      <ul>
+        {
+          projects.map((project, idx) => {
+            return (
+              <li>
+                <a href={project.data.github}>
+                  <h2>{project.data.title}</h2>
+                </a>
+                <p>{project.data.description}</p>
+              </li>
+            )
+          })
+        }
+      </ul>
+    </main>
+    <Footer />
+  </body>
 </html>
