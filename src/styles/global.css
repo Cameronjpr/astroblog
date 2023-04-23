@@ -26,7 +26,16 @@ h5,
 h6,
 strong,
 b {
-	color: #ca4;
+	color: #ddd;
+}
+.hero {
+	font-size: 2.5rem;
+	background: linear-gradient(0.25turn, #85b1c2, #ebf8e1, #d08d6f);
+  background-clip: text;
+	width: min-content;
+	height: min-content;
+	line-height: 2.5rem;
+  -webkit-text-fill-color: transparent;
 }
 a {
 	color: #ccc;

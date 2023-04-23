@@ -30,6 +30,7 @@ const groupedPhotos = groupByYear(photos)
       }
       ul li {
         justify-content: space-between;
+        height: 150px;
       }
 
       ul li a:hover {
@@ -40,6 +41,7 @@ const groupedPhotos = groupByYear(photos)
         border-radius: 5px;
         object-fit: cover;
         height: 150px;
+        font-size: 0px;
       }
     </style>
   </head>
@@ -61,6 +63,7 @@ const groupedPhotos = groupByYear(photos)
                     src={photo.data.src}
                     alt={photo.data.title}
                     width="150"
+                    height="150"
                     loading="lazy"
                   />
                 </a>
