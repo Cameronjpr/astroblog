@@ -5,14 +5,6 @@ import Footer from '@components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'
 import { getCollection } from 'astro:content'
 import { groupByYear } from 'src/utils'
-
-const photos = (await getCollection('photos'))
-  .sort((a, b) => {
-    return b.data.shot.valueOf() - a.data.shot.valueOf()
-  })
-  .reverse()
-
-const groupedPhotos = groupByYear(photos)
 ---
 
 <!DOCTYPE html>
@@ -22,15 +14,14 @@ const groupedPhotos = groupByYear(photos)
     <style>
       ul {
         list-style-type: none;
-        padding: unset;
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        padding-inline-start: 1.5rem;
+        flex-direction: column;
         gap: 1rem;
       }
       ul li {
+        list-style-type: disc;
         justify-content: space-between;
-        height: 150px;
       }
 
       ul li a {
@@ -52,29 +43,19 @@ const groupedPhotos = groupByYear(photos)
   <body>
     <Header title={SITE_TITLE} />
     <main>
+      <p>Here's a list of film cameras I’ve used:</p>
       <ul>
-        {
-          photos.map((photo, idx) => {
-            const previousPhoto = idx ? photos[idx - 1] : undefined
-            const isFirstOfYear =
-              photo.data.shot.getFullYear() !==
-              previousPhoto?.data.shot.getFullYear()
-
-            return (
-              <li>
-                <a href={`/photos/${photo.slug}/`}>
-                  <img
-                    src={photo.data.src}
-                    alt={photo.data.title}
-                    width="150"
-                    height="150"
-                    loading="lazy"
-                  />
-                </a>
-              </li>
-            )
-          })
-        }
+        <li>Olympus OM-2SP</li>
+        <li>Pentax P30n</li>
+        <li>F.E.D. 2</li>
+        <li>Kiev 4a</li>
+        <li>Minox 35 GT</li>
+        <li>Yashica Electro 35 GT</li>
+        <li>Olympus XA2</li>
+        <li>Olympus XA3</li>
+        <li>Canon P</li>
+        <li>Olympus Mju I</li>
+        <li>Rollei 35TE</li>
       </ul>
     </main>
     <Footer />

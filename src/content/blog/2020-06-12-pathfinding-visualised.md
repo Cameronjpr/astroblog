@@ -10,13 +10,13 @@ description: "Visualising Dijkstra's algorithm with P5.js"
 
 # Getting started, getting interested
 
-Ever since I first learned about graph-traversal and pathfinding algorithms, they've interested me. It might be because of the real-world applications, or it could be because of my years playing _Age of Empires_ on Windows XP, watching miniscule Hoplites scurry about on their deathly mission. 
+Ever since I first learned about graph-traversal and pathfinding algorithms, they've interested me. It might be because of the real-world applications, or it could be because of my years playing _Age of Empires_ on Windows XP, watching tiny hoplites scurry about on their deathly mission. 
 
 In learning about graphs and graph traversal, one method came up more than others – Dijkstra's algorithm. At the same time, I was focusing a lot of my energy on learning [P5.js](https://p5js.org/) , a brilliant library for creating art with JavaScript. I decided to create a small visualisation of Dijkstra's algorithm, something that would allows users to play around with graphs – adding nodes, edges, and changing their position. 
 
 # The tool
 
-P5.js is one of my favourite things, ever. As a person who thrives on _making stuff_, I'm surprised it took me so long to find P5, and to really get to grips with it. At its core, P5.js is a library for creative expression, turning statements, loops and logic into art. Real, actual art. I'm no great artist myself, but the P5 community contains many - and you can see their work on the [P5.js website](https://p5js.org/showcase/), on [Reddit](https://www.reddit.com/r/processing/top/?t=all), and on [Twitter](https://twitter.com/p5xjs/media). 
+P5.js is one of my favourite things, ever. As someone who thrives on making stuff, I'm surprised it took me so long to find P5, and to really get to grips with it. At its core, P5.js is a library for creative expression, turning statements, loops and logic into art. Real, actual art. I'm no great artist myself, but the P5 community contains many - and you can see their work on the [P5.js website](https://p5js.org/showcase/), on [Reddit](https://www.reddit.com/r/processing/top/?t=all), and on [Twitter](https://twitter.com/p5xjs/media). 
 
 P5.js itself is a project of the [Processing Foundation](https://processingfoundation.org/) - an organisation helping people learn to code through the visual arts.
 
