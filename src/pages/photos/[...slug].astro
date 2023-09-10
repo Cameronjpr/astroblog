@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content'
+import  { getCollection, type CollectionEntry } from 'astro:content'
 import Photo from '@layouts/Photo.astro'
 
 export async function getStaticPaths() {
@@ -16,6 +16,6 @@ const photo = Astro.props
 const { Content } = await photo?.render()
 ---
 
-<Photo {...photo.data}>
-  <Content />
+<Photo {...photo.data}  >
+  <Content transition:name={`image-${photo.data.src}`} transition:animate="slide"/>
 </Photo>

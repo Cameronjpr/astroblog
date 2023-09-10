@@ -1,6 +1,7 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
+import { ViewTransitions } from 'astro:transitions'
 import '../styles/global.css'
 
 export interface Props {
@@ -38,3 +39,4 @@ const { title, description } = Astro.props
 <meta property="twitter:description" content={description} />
 
 <script defer src="/_vercel/insights/script.js"></script>
+<ViewTransitions />

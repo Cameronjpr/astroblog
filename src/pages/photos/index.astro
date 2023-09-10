@@ -5,6 +5,7 @@ import Footer from '@components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'
 import { getCollection } from 'astro:content'
 import { groupByYear } from 'src/utils'
+import { ViewTransitions } from 'astro:transitions'
 
 const photos = (await getCollection('photos'))
   .sort((a, b) => {
@@ -18,7 +19,10 @@ const groupedPhotos = groupByYear(photos)
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title={SITE_TITLE}
+      description={SITE_DESCRIPTION}
+    />
     <style>
       ul {
         list-style-type: none;
@@ -69,6 +73,8 @@ const groupedPhotos = groupByYear(photos)
                     width="150"
                     height="150"
                     loading="lazy"
+                    transition:name={`image-${photo.data.src}`}
+                    transition:animate="fade"
                   />
                 </a>
               </li>
