@@ -7,4 +7,4 @@ alt: "Ice skaters in Budapest"
 shot: "2018-01-17"
 ---
 
-<img src="/images/photos/skating.jpg" alt="Ice skaters in Budapest">
+<img src="/images/photos/skating.jpg" alt="Ice skaters in Budapest" >

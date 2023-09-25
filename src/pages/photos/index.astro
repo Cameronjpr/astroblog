@@ -4,8 +4,6 @@ import Header from '@components/Header.astro'
 import Footer from '@components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'
 import { getCollection } from 'astro:content'
-import { groupByYear } from 'src/utils'
-import { ViewTransitions } from 'astro:transitions'
 
 const photos = (await getCollection('photos'))
   .sort((a, b) => {
@@ -13,7 +11,6 @@ const photos = (await getCollection('photos'))
   })
   .reverse()
 
-const groupedPhotos = groupByYear(photos)
 ---
 
 <!DOCTYPE html>
@@ -59,22 +56,17 @@ const groupedPhotos = groupByYear(photos)
       <ul>
         {
           photos.map((photo, idx) => {
-            const previousPhoto = idx ? photos[idx - 1] : undefined
-            const isFirstOfYear =
-              photo.data.shot.getFullYear() !==
-              previousPhoto?.data.shot.getFullYear()
-
             return (
               <li>
-                <a href={`/photos/${photo.slug}/`}>
+                <a href={`/photos/${photo.slug}`} transition:name={photo.slug}
+                    transition:animate="initial">
                   <img
                     src={photo.data.src}
                     alt={photo.data.title}
                     width="150"
                     height="150"
                     loading="lazy"
-                    transition:name={`image-${photo.data.src}`}
-                    transition:animate="fade"
+                    transition:name={`${photo.slug} image`}
                   />
                 </a>
               </li>
