@@ -17,6 +17,7 @@ body {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: #ccd;
+	min-height: 100vh;
 }
 h1,
 h2,

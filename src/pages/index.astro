@@ -1,15 +1,13 @@
 ---
-import BaseHead from '../components/BaseHead.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
+import BaseHead from '@components/BaseHead.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 import { getCollection } from 'astro:content'
-import FormattedDate from '../components/FormattedDate.astro'
 
-const posts = (await getCollection('blog'))
-  .filter((b) => !b.data.draft)
-  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-  .reverse()
+const projects = (await getCollection('projects')).sort((a, b) => {
+  return b.data.created.valueOf() - a.data.created.valueOf()
+})
 ---
 
 <!DOCTYPE html>
@@ -22,17 +20,24 @@ const posts = (await getCollection('blog'))
         padding: unset;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
       }
-
       ul li {
         display: flex;
         flex-direction: column;
-        width: 100%;
-        justify-content: space-between;
       }
       ul li :global(time) {
         color: #595959;
+      }
+
+      ul li h2 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      ul li p {
+        margin: 0;
+        font-size: 1rem;
       }
     </style>
   </head>
@@ -41,12 +46,16 @@ const posts = (await getCollection('blog'))
     <main>
       <ul>
         {
-          posts.map((post) => (
-            <li>
-              <FormattedDate date={post.data.pubDate} />
-              <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-            </li>
-          ))
+          projects.map((project, idx) => {
+            return (
+              <li>
+                <a href={project.data.github}>
+                  <h2>{project.data.title}</h2>
+                </a>
+                <p>{project.data.description}</p>
+              </li>
+            )
+          })
         }
       </ul>
     </main>
