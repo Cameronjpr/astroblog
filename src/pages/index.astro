@@ -39,6 +39,12 @@ const projects = (await getCollection('projects')).sort((a, b) => {
         margin: 0;
         font-size: 1rem;
       }
+
+      ul li span {
+        margin: 0;
+        font-size: 0.8rem;
+        color: #595959;
+      }
     </style>
   </head>
   <body>
@@ -53,6 +59,7 @@ const projects = (await getCollection('projects')).sort((a, b) => {
                   <h2>{project.data.title}</h2>
                 </a>
                 <p>{project.data.description}</p>
+                <span>{project.data.language}</span>
               </li>
             )
           })

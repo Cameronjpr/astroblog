@@ -38,7 +38,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.string(),
+    language: z.string(),
     github: z.string(),
     created: z
       .string()
