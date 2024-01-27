@@ -55,9 +55,9 @@ const projects = (await getCollection('projects')).sort((a, b) => {
           projects.map((project, idx) => {
             return (
               <li>
-                <a href={project.data.github}>
-                  <h2>{project.data.title}</h2>
-                </a>
+                <h2>
+                  <a href={project.data.github}>{project.data.title}</a>
+                </h2>
                 <p>{project.data.description}</p>
                 <span>{project.data.language}</span>
               </li>
